@@ -3,9 +3,7 @@ session_start();
 
 try {
     $db = new PDO(
-        "pgsql:host=localhost;port=5432;dbname=raf_mading",
-        "postgres",
-        "postgres"
+        getenv("postgresql://postgres:uWiOCHGUesdkZeFouoxVSnnuOMoEnIPi@postgres.railway.internal:5432/railway")
     );
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
