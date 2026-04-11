@@ -1,8 +1,13 @@
 <?php
 session_start();
 
-<?php
-$db = pg_connect("host=HOST dbname=DB user=USER password=PASS port=5432");
+$db = pg_connect(
+    "host=" . getenv("PGHOST") .
+    " dbname=" . getenv("PGDATABASE") .
+    " user=" . getenv("PGUSER") .
+    " password=" . getenv("PGPASSWORD") .
+    " port=" . getenv("PGPORT")
+);
 
 if (!$db) {
     echo "Koneksi gagal";
