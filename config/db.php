@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-try {
-    $db = new PDO(
-        getenv("postgresql://postgres:uWiOCHGUesdkZeFouoxVSnnuOMoEnIPi@postgres.railway.internal:5432/railway")
-    );
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Koneksi gagal: " . $e->getMessage());
+<?php
+$db = pg_connect("host=HOST dbname=DB user=USER password=PASS port=5432");
+
+if (!$db) {
+    echo "Koneksi gagal";
 }
+?>
