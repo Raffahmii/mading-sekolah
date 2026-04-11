@@ -5,9 +5,10 @@ RUN apt-get update && apt-get install -y libpq-dev \
 
 # FIX MPM ERROR
 RUN a2dismod mpm_event || true
-RUN a2dismod mpm_worker || true
 RUN a2enmod mpm_prefork
 
 COPY . /var/www/html/
+
+RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
