@@ -12,7 +12,10 @@ if (isset($_POST['login'])) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        if (password_verify($password, $user['password'])) {
+    if (
+        $user['password'] === $password || 
+        password_verify($password, $user['password'])
+    ) {
 
             $_SESSION['login'] = true;
             $_SESSION['role'] = $user['role'];
