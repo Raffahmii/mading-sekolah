@@ -41,15 +41,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
 
         $stmt = $db->prepare(
-            "INSERT INTO mading (judul, isi, foto, kategori, tanggal) 
-             VALUES (:j, :i, :f, :k, NOW())"
+            "INSERT INTO mading (judul, isi, foto, tanggal) 
+             VALUES (:j, :i, :f, NOW())"
         );
 
         $stmt->execute([
             ':j' => $judul,
             ':i' => $isi,
             ':f' => $foto,
-            ':k' => $kategori
         ]);
 
         $_SESSION['success'] = "Mading berhasil ditambahkan!";
