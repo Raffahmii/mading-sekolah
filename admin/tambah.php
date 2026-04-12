@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $isi   = trim($_POST['isi']);
 
     // ✅ ambil penulis dari session login
-    $penulis = $_SESSION['username'];
+    $penulis = trim($_POST['penulis']);
 
     // ❌ HAPUS kategori (karena ga ada di DB)
 

@@ -577,6 +577,11 @@ foreach ($last_7_days as $day) {
                             <label class="form-label fw-bold">Judul Mading</label>
                             <input type="text" name="judul" class="form-control" placeholder="Masukkan judul mading" required>
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Penulis</label>
+                            <input type="text" name="penulis" class="form-control" placeholder="Masukkan nama penulis" required>
+                        </div>
                         
                         <div class="mb-3">
                             <label class="form-label fw-bold">Isi Mading</label>
