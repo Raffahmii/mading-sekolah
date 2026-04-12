@@ -14,10 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $judul = trim($_POST['judul']);
     $isi   = trim($_POST['isi']);
 
-    // Handle kategori (checkbox array)
-    $kategori = isset($_POST['kategori']) 
-        ? implode(",", $_POST['kategori']) 
-        : null;
+    // ✅ ambil penulis dari session login
+    $penulis = $_SESSION['username'];
+
+    // ❌ HAPUS kategori (karena ga ada di DB)
 
     // Handle file upload
     $foto = null;
@@ -40,14 +40,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     try {
 
+        // ✅ TAMBAH penulis ke query
         $stmt = $db->prepare(
-            "INSERT INTO mading (judul, isi, foto, tanggal) 
-             VALUES (:j, :i, :f, NOW())"
+            "INSERT INTO mading (judul, isi, penulis, foto, tanggal) 
+             VALUES (:j, :i, :p, :f, NOW())"
         );
 
         $stmt->execute([
             ':j' => $judul,
             ':i' => $isi,
+            ':p' => $penulis,
             ':f' => $foto,
         ]);
 

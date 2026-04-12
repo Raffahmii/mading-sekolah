@@ -595,7 +595,7 @@ foreach ($last_7_days as $day) {
                             </div>
                         </div>
                         
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label class="form-label fw-bold">Kategori</label>
                             <div class="d-flex flex-wrap gap-2">
                                 <div class="form-check">
@@ -615,7 +615,7 @@ foreach ($last_7_days as $day) {
                                     <label class="form-check-label" for="cat4">Prestasi</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         
                         <div class="d-flex justify-content-between">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
