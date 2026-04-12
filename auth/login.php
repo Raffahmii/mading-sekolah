@@ -5,24 +5,30 @@ $error = "";
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password'];
 
-    $stmt = $db->prepare("SELECT * FROM users WHERE username = :u AND password = :p");
-    $stmt->execute([':u'=>$username, ':p'=>$password]);
+    $stmt = $db->prepare("SELECT * FROM users WHERE username = :u");
+    $stmt->execute([':u'=>$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        $_SESSION['login'] = true;
-        $_SESSION['role'] = $user['role'];
+        if (password_verify($password, $user['password'])) {
 
-        if ($user['role'] === 'admin') {
-            header("Location: ../admin/dashboard.php");
+            $_SESSION['login'] = true;
+            $_SESSION['role'] = $user['role'];
+
+            if ($user['role'] === 'admin') {
+                header("Location: ../admin/dashboard.php");
+            } else {
+                header("Location: ../user/dashboard.php");
+            }
+            exit;
+
         } else {
-            header("Location: ../user/dashboard.php");
+            $error = "Password salah";
         }
-        exit;
     } else {
-        $error = "Username atau password salah";
+        $error = "User tidak ditemukan";
     }
 }
 ?>
