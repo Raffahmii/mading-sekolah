@@ -1,15 +1,13 @@
 <?php
-session_start();
-
-$db = pg_connect(
+$conn = pg_connect(
     "host=" . getenv("PGHOST") .
+    " port=" . getenv("PGPORT") .
     " dbname=" . getenv("PGDATABASE") .
     " user=" . getenv("PGUSER") .
-    " password=" . getenv("PGPASSWORD") .
-    " port=" . getenv("PGPORT")
+    " password=" . getenv("PGPASSWORD")
 );
 
-if (!$db) {
+if (!$conn) {
     echo "Koneksi gagal";
 }
 ?>
